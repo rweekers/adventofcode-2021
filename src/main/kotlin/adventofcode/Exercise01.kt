@@ -6,15 +6,14 @@ class Exercise01(input: String) {
 
     fun silverExercise(): Int {
         return inputList
-            .windowed(2)
+            .zipWithNext()
             .count { (a, b) -> a < b }
     }
 
     fun goldExercise(): Int {
         return inputList
-            .windowed(3)
-            .map { (a, b, c) -> a + b + c }
-            .windowed(2)
+            .windowed(3) { it.sum() }
+            .zipWithNext()
             .count { (a, b) -> a < b }
     }
 }

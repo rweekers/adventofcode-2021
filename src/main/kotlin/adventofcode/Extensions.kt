@@ -14,6 +14,14 @@ fun Int.takeLastN(n: Int): Int {
     return this.toString().takeLast(n).toInt()
 }
 
+fun <T> List<T>.mostCommon(comparator: Comparator<T>): T =
+    this.groupingBy { it }.eachCount().toSortedMap(comparator).maxByOrNull { it.value }?.key
+        ?: throw IllegalArgumentException()
+
+fun <T> List<T>.leastCommon(comparator: Comparator<T>): T =
+    this.groupingBy { it }.eachCount().toSortedMap(comparator).minByOrNull { it.value }?.key
+        ?: throw IllegalArgumentException()
+
 fun Int.dropLastN(n: Int): Int {
     return this.toString().dropLast(n).toInt()
 }
@@ -47,8 +55,8 @@ fun Int.greatestCommonDivider(otherInt: Int): Int {
 }
 
 fun <T> List<T>.everyPair(): List<Pair<T, T>> =
-        this.mapIndexed { idx, left ->
-            this.drop(idx+1).map { right ->
-                Pair(left, right)
-            }
-        }.flatten()
+    this.mapIndexed { idx, left ->
+        this.drop(idx + 1).map { right ->
+            Pair(left, right)
+        }
+    }.flatten()
