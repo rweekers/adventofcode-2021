@@ -6,6 +6,8 @@ fun <T> List<T>.innerJoin(otherList: List<T>): List<T> {
     return this.filter { otherList.contains(it) }
 }
 
+fun List<String>.concat() = this.joinToString("") { it }.takeWhile { it.isDigit() }
+
 fun Int.toListOfInt(): List<Int> {
     return this.toString().map { it.toString().toInt() }
 }
@@ -26,8 +28,8 @@ fun Int.dropLastN(n: Int): Int {
     return this.toString().dropLast(n).toInt()
 }
 
-fun Int.parameterMode(postion: Int): Int {
-    return this / (10.0.pow(postion).toInt()) % 10
+fun Int.parameterMode(position: Int): Int {
+    return this / (10.0.pow(position).toInt()) % 10
 }
 
 fun String.commaSeparatedToListOfInt(): List<Int> {
@@ -40,6 +42,10 @@ fun String.toListOfInt(): List<Int> {
 
 fun String.toListOfSingleStrings(): List<String> {
     return this.toCharArray().map { it.toString() }
+}
+
+fun String.toSetOfSingleStrings(): Set<String> {
+    return this.toListOfSingleStrings().toSet()
 }
 
 fun Int.greatestCommonDivider(otherInt: Int): Int {

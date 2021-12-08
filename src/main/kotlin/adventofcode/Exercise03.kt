@@ -26,13 +26,6 @@ class Exercise03(input: String) {
             .toString().toInt(2)
     }
 
-    private fun test(input: List<List<String>>): List<List<String>> {
-        (0 until input.first().size).fold(listOf<String>()) { acc, _ ->
-            acc
-        }
-        return input
-    }
-
     private tailrec fun determineRatingList(input: List<List<String>>, counter: Int = 0, mostCommon: Boolean = true): List<List<String>> {
         val check = transpose(input)
         val filterValue = if (mostCommon) check[counter].mostCommon { x, y ->
